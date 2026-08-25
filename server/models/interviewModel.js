@@ -121,7 +121,7 @@ const Interview = {
       SELECT i.*, u.name AS interviewer_name
       FROM interviews i
       JOIN users u ON i.interviewer_id = u.id
-      WHERE i.candidate_id = $1 AND i.status != 'completed' AND i.scheduled_at >= NOW() - INTERVAL '4 hours'
+      WHERE i.candidate_id = $1 AND i.status != 'completed' AND i.status != 'cancelled'
       ORDER BY i.scheduled_at ASC;
     `;
     const { rows } = await db.query(queryText, [candidateId]);
