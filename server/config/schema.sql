@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS interviews (
   question_description TEXT DEFAULT '',
   difficulty VARCHAR(50) DEFAULT 'Medium' CHECK (difficulty IN ('Easy', 'Medium', 'Hard')),
   programming_language VARCHAR(50) DEFAULT 'javascript',
-  scheduled_at TIMESTAMP NOT NULL,
+  scheduled_at TIMESTAMPTZ NOT NULL,
   duration_minutes INTEGER DEFAULT 60,
   status VARCHAR(50) DEFAULT 'scheduled' CHECK (status IN ('scheduled', 'waiting', 'active', 'completed')),
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
