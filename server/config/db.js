@@ -442,6 +442,7 @@ mockDb.test_cases = [
 pool.connect((err, client, release) => {
   if (err) {
     console.warn('⚠️ WARNING: PostgreSQL offline. Switching to interactive In-Memory Database Fallback...');
+    console.error('❌ Database connection error details:', err.message || err);
     console.log('👉 Feel free to test the app! Registrations, dashboards, rooms, and submissions will work perfectly in-memory.');
     useMock = true;
   } else {
