@@ -20,7 +20,11 @@ export const SocketProvider = ({ children }) => {
       return;
     }
 
-    const socketUrl = import.meta.env.VITE_WS_URL || 'http://localhost:5000';
+    let socketUrl = import.meta.env.VITE_WS_URL;
+    if (!socketUrl) {
+      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+      socketUrl = apiUrl.replace(/\/api$/, '');
+    }
     console.log(`🔌 Connecting to WebSocket server: ${socketUrl}`);
 
     const newSocket = io(socketUrl, {
