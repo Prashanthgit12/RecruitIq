@@ -1,8 +1,13 @@
 const { Pool } = require('pg');
+const net = require('net');
 require('dotenv').config();
 
 const poolConfig = {
   connectionString: process.env.DATABASE_URL || 'postgresql://postgres:postgres@localhost:5432/interview_room',
+  createConnection: (options) => {
+    options.family = 4; // Force IPv4 socket resolution to prevent ENETUNREACH on Render
+    return net.createConnection(options);
+  }
 };
 
 if (process.env.DATABASE_URL && !process.env.DATABASE_URL.includes('localhost') && !process.env.DATABASE_URL.includes('127.0.0.1')) {
