@@ -52,21 +52,19 @@ const interviewController = {
         duration_minutes: durationMinutes,
       });
 
-      // Dispatch Email Invitation
+      // Dispatch Email Invitation (Run in background asynchronously so UI is instant!)
       const clientUrl = process.env.VITE_CLIENT_URL || 'http://localhost:5173';
       const joinLink = `${clientUrl}/interview/room/${roomId}`;
-      try {
-        await emailService.sendInvitation({
-          candidateName: candidate.name,
-          candidateEmail: candidate.email,
-          interviewTitle: interview.title,
-          scheduledAt: new Date(scheduledAt).toLocaleString('en-US', { dateStyle: 'long', timeStyle: 'short' }),
-          durationMinutes: durationMinutes || 60,
-          joinLink
-        });
-      } catch (emailErr) {
+      emailService.sendInvitation({
+        candidateName: candidate.name,
+        candidateEmail: candidate.email,
+        interviewTitle: interview.title,
+        scheduledAt: new Date(scheduledAt).toLocaleString('en-US', { dateStyle: 'long', timeStyle: 'short' }),
+        durationMinutes: durationMinutes || 60,
+        joinLink
+      }).catch((emailErr) => {
         console.error('Failed to send interview email invitation:', emailErr.message);
-      }
+      });
 
       return res.status(201).json({
         message: 'Interview scheduled successfully.',
