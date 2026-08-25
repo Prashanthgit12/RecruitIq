@@ -144,7 +144,7 @@ const InterviewerDashboard = () => {
     e.preventDefault();
     setError(null);
 
-    const scheduledAt = `${form.date}T${form.time}:00`;
+    const scheduledAt = new Date(`${form.date}T${form.time}:00`).toISOString();
 
     try {
       const payload = {
