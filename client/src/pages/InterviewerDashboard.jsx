@@ -615,8 +615,8 @@ RecruitIQ`);
                     <input
                       type="number"
                       required
-                      value={form.durationMinutes}
-                      onChange={(e) => setForm({ ...form, durationMinutes: parseInt(e.target.value) })}
+                      value={form.durationMinutes === '' ? '' : form.durationMinutes}
+                      onChange={(e) => setForm({ ...form, durationMinutes: e.target.value === '' ? '' : parseInt(e.target.value) })}
                       className="w-full bg-dark-950 border border-dark-800 rounded-xl px-3 py-2.5 text-white text-xs font-semibold focus:outline-none focus:border-brand-500"
                     />
                   </div>
