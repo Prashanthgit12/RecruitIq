@@ -18,6 +18,7 @@ const getTransporter = () => {
     host,
     port: parseInt(port) || 587,
     secure: parseInt(port) === 465, // true for 465, false for other ports
+    family: 4,                      // Force IPv4 to prevent ENETUNREACH errors on cloud host
     auth: {
       user,
       pass,
