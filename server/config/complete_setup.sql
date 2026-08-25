@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS interviews (
   programming_language VARCHAR(50) DEFAULT 'javascript',
   scheduled_at TIMESTAMP NOT NULL,
   duration_minutes INTEGER DEFAULT 60,
-  status VARCHAR(50) DEFAULT 'scheduled' CHECK (status IN ('scheduled', 'active', 'completed')),
+  status VARCHAR(50) DEFAULT 'scheduled' CHECK (status IN ('scheduled', 'waiting', 'active', 'completed')),
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
