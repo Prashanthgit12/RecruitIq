@@ -5,6 +5,12 @@ const poolConfig = {
   connectionString: process.env.DATABASE_URL || 'postgresql://postgres:postgres@localhost:5432/interview_room',
 };
 
+if (process.env.DATABASE_URL && !process.env.DATABASE_URL.includes('localhost') && !process.env.DATABASE_URL.includes('127.0.0.1')) {
+  poolConfig.ssl = {
+    rejectUnauthorized: false
+  };
+}
+
 if (!process.env.DATABASE_URL) {
   Object.assign(poolConfig, {
     user: process.env.DB_USER || 'postgres',
