@@ -609,6 +609,7 @@ RecruitIQ`);
                       onChange={(e) => setForm({ ...form, time: e.target.value })}
                       className="w-full bg-dark-950 border border-dark-800 rounded-xl px-3 py-2.5 text-white text-xs font-semibold focus:outline-none focus:border-brand-500"
                     />
+                    <span className="text-[9px] text-dark-500 mt-1 block">Enter 24h format (e.g. 17:30 for 5:30 PM)</span>
                   </div>
                   <div>
                     <label className="text-[10px] font-bold text-dark-500 uppercase block mb-1.5">Duration (Minutes)</label>
